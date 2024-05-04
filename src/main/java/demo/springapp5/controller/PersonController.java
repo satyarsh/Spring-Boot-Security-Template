@@ -27,34 +27,34 @@ public class PersonController {
 	}
 
 	@PostMapping("/person/save")
-	public String postPerson(@RequestBody String entity) {
-		return entity;
+	public void postPerson(@RequestParam(name = "firstname") String name,
+			@RequestParam(name = "lastname") String lastname,
+			@RequestParam(name = "phone") String phoneNumber,
+			@RequestParam(name = "email") String email) {
+
+			log.info("----------- " + name +
+			" " + 
+			lastname + 
+			" " +
+			phoneNumber + 
+			" " +
+			email + 
+			" -------------");
+
+		repository.save(personModel.builder()
+				.firstname(name)
+				.lastname(lastname)
+				.email(email)
+				.phoneNumber(phoneNumber)
+				.build());
+
 	}
 	
 	@GetMapping("/person")
 	public List<personModel> getPerson() {
-
 		log.info("-------- im a logger and /person is hit--------");
-
-		repository.save(personModel.builder()
-		.firstname("Jason")
-		.lastname("M")
-		.email("email@gmail.com")
-		.phoneNumber("888777999222")
-		.build());
-
 		return repository.findAll();
 
-	}
-
-	@GetMapping("/POST")
-	public String PostFormPage() {
-		return "POST";
-	}
-
-	@GetMapping("/DbLogin")
-	public String DbLoginPage() {
-		return "DbLogin";
 	}
 	
 
