@@ -26,5 +26,11 @@ public class personModel {
 	
 	@NotNull
 	private String lastname;
+
+	@NotNull
+	private String email;
 	
+	@NotNull
+	private String phoneNumber;
+
 }

@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import demo.springapp5.model.personModel;
 import demo.springapp5.repository.personRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @Slf4j
 @RestController
@@ -21,11 +26,11 @@ public class PersonController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/")
-	public String hello() {
-		return "Hello World From a Returned String";
+	@PostMapping("/person")
+	public String postPerson(@RequestBody String entity) {
+		return entity;
 	}
-
+	
 	@GetMapping("/person")
 	public List<personModel> getPerson() {
 
@@ -34,20 +39,18 @@ public class PersonController {
 		repository.save(personModel.builder()
 		.firstname("Jason")
 		.lastname("M")
-		.build());
-
-		repository.save(personModel.builder()
-		.firstname("Chris")
-		.lastname("T")
-		.build());
-
-		repository.save(personModel.builder()
-		.firstname("Nergal")
-		.lastname("M")
+		.email("email@gmail.com")
+		.phoneNumber("888777999222")
 		.build());
 
 		return repository.findAll();
 
 	}
+
+	@GetMapping("/POST")
+	public String PostFormPage(@RequestParam String param) {
+		return "POST";
+	}
+	
 
 }
