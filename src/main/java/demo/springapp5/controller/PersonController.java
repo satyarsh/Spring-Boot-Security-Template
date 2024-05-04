@@ -26,7 +26,7 @@ public class PersonController {
 		this.repository = repository;
 	}
 
-	@PostMapping("/person")
+	@PostMapping("/person/save")
 	public String postPerson(@RequestBody String entity) {
 		return entity;
 	}
@@ -48,8 +48,13 @@ public class PersonController {
 	}
 
 	@GetMapping("/POST")
-	public String PostFormPage(@RequestParam String param) {
+	public String PostFormPage() {
 		return "POST";
+	}
+
+	@GetMapping("/DbLogin")
+	public String DbLoginPage() {
+		return "DbLogin";
 	}
 	
 
