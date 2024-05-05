@@ -28,9 +28,11 @@ public class personModel {
 	private String lastname;
 
 	@NotNull
+	@Column(unique=true)
 	private String email;
 	
 	@NotNull
+	@Column(unique=true)
 	private String phoneNumber;
 
 }

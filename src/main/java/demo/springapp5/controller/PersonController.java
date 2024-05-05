@@ -1,8 +1,11 @@
 package demo.springapp5.controller;
 
 import java.util.List;
+
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import demo.springapp5.model.personModel;
 import demo.springapp5.repository.personRepository;
@@ -27,10 +30,11 @@ public class PersonController {
 	}
 
 	@PostMapping("/person/save")
-	public void postPerson(@RequestParam(name = "firstname") String name,
+	public ModelAndView postPerson(@RequestParam(name = "firstname") String name,
 			@RequestParam(name = "lastname") String lastname,
 			@RequestParam(name = "phone") String phoneNumber,
-			@RequestParam(name = "email") String email) {
+			@RequestParam(name = "email") String email,
+			ModelMap model) {
 
 			log.info("----------- " + name +
 			" " + 
@@ -48,6 +52,10 @@ public class PersonController {
 				.phoneNumber(phoneNumber)
 				.build());
 
+		model.addAttribute("attribute", "redirectWithRedirectPrefix");
+
+		return new ModelAndView("redirect:/success.html" ,model);
+
 	}
 	
 	@GetMapping("/person")
@@ -56,6 +64,12 @@ public class PersonController {
 		return repository.findAll();
 
 	}
+
+	@PostMapping("/testpost")
+	public String postMethodName(@RequestBody String entity) {
+		return entity.toString();
+	}
+	
 	
 
 }
