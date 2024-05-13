@@ -3,6 +3,7 @@ package demo.springapp5.model;
 import org.springframework.stereotype.Component;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class personModel {
 	
 	@NotNull
 	@Column(unique=true)
+	@Pattern(regexp = "^[0-9]{3,11}$", message = "------------- Invaild Phone number! -------------")
 	private String phoneNumber;
 
 }
