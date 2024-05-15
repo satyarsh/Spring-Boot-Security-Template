@@ -1,16 +1,17 @@
-package demo.springapp5.model;
+package demo.springapp5.service;
 
 import java.io.IOException;
 import java.net.URL;
-import org.springframework.stereotype.Component;
+
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Component
-public class JsonPlaceHolderModel {
+@Service
+public class JsonPlaceHolderService {
 
-	/*
+    	/*
 	 * Fetchs the JSON from the jsonplaceholder.typicode.com And Returns a JsonNode to
 	 * be Used in Other Controllers
 	 */
@@ -33,5 +34,5 @@ public class JsonPlaceHolderModel {
 		URL JsonPlaceHolderURL = new URL("https://jsonplaceholder.typicode.com/todos");
 		return ProcessJSON(JsonPlaceHolderURL);
 	}
-
+    
 }
