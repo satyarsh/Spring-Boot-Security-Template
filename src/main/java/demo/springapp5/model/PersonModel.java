@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Data
-public class personModel {
+public class PersonModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

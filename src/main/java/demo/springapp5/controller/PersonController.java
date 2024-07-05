@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import demo.springapp5.model.personModel;
-import demo.springapp5.repository.personRepository;
+import demo.springapp5.model.PersonModel;
+import demo.springapp5.repository.PersonRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class PersonController {
 
-	private personModel personmodel;
+	private PersonModel personmodel;
 
-	private personRepository repository;
+	private PersonRepository repository;
 
-	public PersonController(personRepository repository, personModel personModel) {
+	public PersonController(PersonRepository repository, PersonModel personModel) {
 		this.personmodel = personModel;
 		this.repository = repository;
 	}
@@ -55,7 +55,7 @@ public class PersonController {
 							.stream()
 							.map((event) -> event.getDefaultMessage()).collect(Collectors.toList()).toString());
 		} else {
-			repository.save(personModel.builder()
+			repository.save(PersonModel.builder()
 					.firstname(name)
 					.lastname(lastname)
 					.email(email)
@@ -73,7 +73,7 @@ public class PersonController {
 	}
 
 	@GetMapping("/person")
-	public List<personModel> getPerson() {
+	public List<PersonModel> getPerson() {
 		log.info("-------- im a logger and /person is hit--------");
 		return repository.findAll();
 
